@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fadia Elsayed Mohamed - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #4a3b5e;
+            overflow-x: hidden;
+            background: #f5f0ff;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #e0d5f5 0%, #d4c5f9 50%, #e5d9ff 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: fixed;
+            background: rgba(190, 149, 228, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle 20s infinite;
+        }
+
+        @keyframes floatParticle {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(245, 240, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 5px 30px rgba(147, 112, 219, 0.3);
+            z-index: 1000;
+            animation: slideDown 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-bottom: 3px solid #b19cd9;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #8b7ab8;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #b19cd9, #9d84c7);
+            transition: all 0.4s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: #9370db;
+            transform: translateY(-3px);
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1400px;
+            z-index: 1;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: heroAppear 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes heroAppear {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .profile-img-container {
+            position: relative;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .profile-img-container::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: linear-gradient(45deg, #b19cd9, #9d84c7, #d4c5f9, #b19cd9);
+            background-size: 300% 300%;
+            border-radius: 50%;
+            animation: rotateGradient 4s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes rotateGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .profile-img {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 20px 60px rgba(147, 112, 219, 0.4);
+            animation: float 6s ease-in-out infinite;
+            display: block;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            color: #4a3b5e;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #8b7ab8;
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 20px rgba(177, 156, 217, 0.5), 0 0 30px rgba(147, 112, 219, 0.3);
+            }
+
+            to {
+                text-shadow: 0 0 30px rgba(177, 156, 217, 0.8), 0 0 40px rgba(147, 112, 219, 0.6);
+            }
+        }
+
+        .hero .subtitle {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #9370db;
+            animation: slideInRight 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .contact-info {
+            animation: slideInRight 1s ease-out 0.8s both;
+        }
+
+        .contact-info p {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            color: #4a3b5e;
+        }
+
+        .contact-info p:hover {
+            background: rgba(177, 156, 217, 0.4);
+            transform: translateX(10px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        section:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+        }
+
+        section:nth-child(even) {
+            background: rgba(245, 240, 255, 0.95);
+            color: #4a3b5e;
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #9370db, #b19cd9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            animation: bounceIn 1s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 5px;
+            background: linear-gradient(90deg, #b19cd9, #9d84c7);
+            border-radius: 10px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, #b19cd9 0%, #9d84c7 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(147, 112, 219, 0.4);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .about-card:hover {
+            transform: translateY(-20px) scale(1.05);
+            box-shadow: 0 30px 80px rgba(147, 112, 219, 0.6);
+        }
+
+        .about-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .about-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Education Section */
+        .education-item {
+            background: linear-gradient(135deg, #9d84c7 0%, #b19cd9 100%);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(147, 112, 219, 0.4);
+            border-left: 8px solid #9370db;
+            transition: all 0.5s ease;
+            color: white;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .education-item:hover {
+            transform: translateX(30px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(147, 112, 219, 0.6);
+        }
+
+        .education-item h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .education-item p {
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #b19cd9 0%, #9d84c7 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(147, 112, 219, 0.4);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: scaleIn 0.8s ease-out;
+            color: white;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .skill-category:hover {
+            transform: scale(1.1);
+            box-shadow: 0 30px 80px rgba(147, 112, 219, 0.6);
+        }
+
+        .skill-category h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .skill-item {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            color: white;
+            font-weight: 600;
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateX(15px);
+        }
+
+        /* Work Experience Section */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .work-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(147, 112, 219, 0.3);
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: flipIn 1s ease-out;
+        }
+
+        @keyframes flipIn {
+            from {
+                opacity: 0;
+                transform: perspective(1000px) rotateY(-90deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: perspective(1000px) rotateY(0);
+            }
+        }
+
+        .work-card:hover {
+            transform: translateY(-30px) scale(1.05);
+            box-shadow: 0 40px 100px rgba(147, 112, 219, 0.6);
+        }
+
+        .work-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            display: block;
+        }
+
+        .work-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .work-card-content {
+            padding: 2rem;
+            background: linear-gradient(135deg, #b19cd9 0%, #9d84c7 100%);
+            color: white;
+        }
+
+        .work-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .work-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #b19cd9 0%, #9d84c7 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(147, 112, 219, 0.4);
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: bounceIn 1s ease-out;
+            color: white;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-20px) scale(1.1);
+            box-shadow: 0 30px 80px rgba(147, 112, 219, 0.6);
+        }
+
+        .contact-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @keyframes spin {
+
+            0%,
+            100% {
+                transform: rotate(0deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(180deg) scale(1.2);
+            }
+        }
+
+        .contact-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .contact-card p {
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #b19cd9 0%, #9d84c7 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.5rem;
+            }
+
+            .profile-img {
+                width: 250px;
+                height: 250px;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Floating Particles -->
+    <script>
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.width = Math.random() * 30 + 10 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            document.querySelector('.animated-bg').appendChild(particle);
+        }
+    </script>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="profile-img-container">
+                <img src="profile.jpg" alt="Fadia Elsayed Mohamed" class="profile-img">
+            </div>
+            <div class="hero-text">
+                <h1>Fadia Elsayed Mohamed</h1>
+                <p class="subtitle">Chinese Interpreter & Instructor</p>
+                <div class="contact-info">
+                    <p>📱 01015919518</p>
+                    <p>✉️ fadiaelsayed434@gmail.com</p>
+                    <p>📍 Miami, Alexandria, Egypt</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section-reveal">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-card">
+                <h3>🎯 Profile</h3>
+                <p>Language student, Chinese interpreter and instructor. I consider myself a responsible and orderly
+                    person dedicated to linguistic excellence.</p>
+            </div>
+            <div class="about-card">
+                <h3>🌟 Expertise</h3>
+                <p>Specializing in Mandarin Chinese interpretation and instruction, with a passion for bridging
+                    communication gaps between cultures.</p>
+            </div>
+            <div class="about-card">
+                <h3>💼 Professional Focus</h3>
+                <p>Freelance interpretation services between Arabic and Mandarin, helping individuals and businesses
+                    communicate effectively.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section-reveal">
+        <h2>Education</h2>
+        <div class="education-item">
+            <h3>🎓 Bachelor of Mandarin Chinese</h3>
+            <p><strong>Duration:</strong> 2022-2026</p>
+            <p><strong>Grade:</strong> 247/300</p>
+            <p>Comprehensive study of Mandarin Chinese language, culture, and interpretation techniques.</p>
+        </div>
+        <div class="education-item">
+            <h3>📜 HSK 4 Diploma</h3>
+            <p><strong>Year:</strong> 2024</p>
+            <p>Achieved HSK 4 certification, demonstrating advanced proficiency in Mandarin Chinese.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="section-reveal">
+        <h2>Skills & Competencies</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>🗣️ Languages</h3>
+                <div class="skill-item">Arabic - Native</div>
+                <div class="skill-item">English - Advanced</div>
+                <div class="skill-item">Mandarin Chinese - Advanced</div>
+                <div class="skill-item">Japanese - Beginner</div>
+            </div>
+            <div class="skill-category">
+                <h3>💻 Computer Skills</h3>
+                <div class="skill-item">ICDL Certified</div>
+                <div class="skill-item">Spreadsheet Applications</div>
+                <div class="skill-item">Slide Presentations</div>
+            </div>
+            <div class="skill-category">
+                <h3>🎓 Teaching</h3>
+                <div class="skill-item">Chinese Language Instruction</div>
+                <div class="skill-item">Cultural Exchange</div>
+                <div class="skill-item">Student Engagement</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="section-reveal">
+        <h2>Work Experience</h2>
+        <div class="work-grid">
+            <div class="work-card">
+                <img src="ice.jpg" alt="Chinese Instruction at ICE Breakers">
+                <!-- <img src="ice2.jpg" alt="Teaching Chinese Language"> -->
+                <div class="work-card-content">
+                    <h3> Chinese Instructor</h3>
+                    <p><strong>ICE Breakers - Season Two</strong></p>
+                    <p><strong>Year:</strong> 2025</p>
+                    <p>Taught Mandarin Chinese to diverse groups of students, designing engaging lesson plans that
+                        promoted active participation and language retention. Focused on developing practical
+                        communication skills while fostering cultural understanding and appreciation of Chinese
+                        traditions and values.</p>
+                </div>
+            </div>
+            <div class="work-card">
+                <img src="ice2.jpg" alt="Teaching Chinese Language">
+                <div class="work-card-content">
+                    <h3> ICE Project</h3>
+                    <p><strong>Language Education</strong></p>
+                    <p>Taught Chinese language with a focus on practical communication and cultural understanding.
+                        Designed interactive lessons that integrated listening, speaking, reading, and writing skills.
+                        Encouraged immersive learning through real-life dialogues and cultural activities, helping
+                        students build confidence, fluency, and a deeper appreciation for Chinese culture.</p>
+                </div>
+            </div>
+            <div class="work-card">
+                <img src="ifedence.jpg" alt="Chinese Instructor at IFedence">
+                <div class="work-card-content">
+                    <h3> IFedence </h3>
+                    <p><strong>Chinese Instructor at iFedence </strong></p>
+                    <p>Taught beginner and intermediate Chinese language courses to university students, focusing on
+                        pronunciation, vocabulary, and conversational skills. Designed engaging lessons that combined
+                        cultural insights with interactive practice to enhance fluency and confidence.</p>
+                </div>
+            </div>
+            <div class="work-card">
+                <img src="freelace.jpg" alt="Freelance Interpreter">
+                <div class="work-card-content">
+                    <h3> Freelance Interpreter</h3>
+                    <p><strong>Arabic ↔ Mandarin</strong></p>
+                    <p>Providing professional interpretation services for business meetings, conferences, and personal
+                        communications between Arabic and Mandarin speakers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="volunteer" class="section-reveal">
+        <h2>Volunteer Experience</h2>
+        <div class="education-item">
+            <h3>💻 ECPC Programming Contest</h3>
+            <p><strong>Year:</strong> 2023/2024</p>
+            <p>Contributed to organizing and executing programming competitions by coordinating logistics, assisting
+                participants, and ensuring smooth event operations. Supported the technical team in managing competition
+                tasks and fostering a collaborative and engaging environment for all participants.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="section-reveal">
+        <h2>Get In Touch</h2>
+        <div class="contact-grid">
+
+            <!-- Phone -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#25D366" viewBox="0 0 24 24" width="60px"
+                        height="60px">
+                        <path
+                            d="M20.52 3.48A11.85 11.85 0 0012 0C5.37 0 0 5.37 0 12a11.94 11.94 0 001.63 6.03L0 24l6.17-1.61A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.25-6.19-3.48-8.52zM12 22a9.93 9.93 0 01-5.06-1.39l-.36-.21-3.66.96.98-3.57-.23-.37A9.96 9.96 0 012 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm4.89-7.15c-.27-.14-1.61-.79-1.86-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.2-1.33-.81-.72-1.36-1.61-1.52-1.88-.16-.27-.02-.42.12-.55.13-.13.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.46-.83-2-.22-.54-.44-.46-.61-.47h-.52c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3s.99 2.66 1.13 2.84c.14.18 1.94 2.95 4.72 4.14.66.28 1.17.45 1.57.57.66.21 1.26.18 1.73.11.53-.08 1.61-.66 1.84-1.30.23-.64.23-1.19.16-1.30-.07-.11-.25-.18-.52-.32z" />
+                    </svg>
+                </div>
+                <h3>WhatsApp</h3>
+                <p>
+                    <a href="https://wa.me/201015919518" target="_blank"
+                        style="color: white; text-decoration: underline;">
+                        +201015919518
+                    </a>
+                </p>
+            </div>
+
+            <!-- Email -->
+            <div class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <h3>Email</h3>
+                <p><a href="mailto:fadiaelsayed434@gmail.com" target="_blank"
+                        style="color: white; text-decoration: underline;">
+                        fadiaelsayed434@gmail.com
+                    </a></p>
+            </div>
+
+            <!-- Location -->
+            <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <h3>Location</h3>
+                <p>Miami, Alexandria<br>Egypt</p>
+            </div>
+
+
+            <!-- LinkedIn -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#0A66C2" viewBox="0 0 24 24" width="60px"
+                        height="60px">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.026-3.037-1.85-3.037-1.853 0-2.136 1.446-2.136 2.939v5.667H9.354V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.37-1.85 3.602 0 4.266 2.37 4.266 5.456v6.285zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM6.772 20.452H3.89V9h2.882v11.452zM22.225 0H1.771C.792 0 0 .771 0 1.729v20.542C0 23.228.792 24 1.771 24h20.451C23.207 24 24 23.228 24 22.271V1.729C24 .771 23.207 0 22.225 0z" />
+                    </svg>
+                </div>
+                <h3>LinkedIn</h3>
+                <p>
+                    <a href="https://www.linkedin.com/in/fadia-elsayed-290122250/" target="_blank"
+                        style="color: white; text-decoration: underline;">
+                        linkedin.com/in/fadia-elsayed
+                    </a>
+                </p>
+            </div>
+
+            <!-- Facebook -->
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="#1877F2" viewBox="0 0 24 24" width="60px"
+                        height="60px">
+                        <path d="M22.675 0h-21.35C.6 0 0 .6 0 1.325v21.351C0 23.4.6 24 
+          1.325 24h11.495v-9.294H9.691v-3.622h3.129V8.413c0-3.1 
+          1.894-4.788 4.659-4.788 1.325 0 2.464.099 
+          2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 
+          1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.4 
+          24 24 23.4 24 22.675V1.325C24 .6 23.4 0 22.675 0z" />
+                    </svg>
+                </div>
+                <h3>Facebook</h3>
+                <p>
+                    <a href="https://www.facebook.com/izuko.mydoraya" target="_blank"
+                        style="color: white; text-decoration: underline;">
+                        facebook.com/fadia-elsayed
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2025 Fadia Elsayed Mohamed. All rights reserved.</p>
+        <p>Chinese Interpreter & Instructor</p>
+    </footer>
+
+    <script>
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>
